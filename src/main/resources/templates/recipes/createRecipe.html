@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CookBook</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="col-md-8 mx-auto rounded border p-4 m-4">
+        <h2 class="text-center mb-5">Новий Рецепт</h2>
+
+        <form method="post" enctype="multipart/form-data" th:object="${recipeDto}">
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Назва</label>
+                <div class="col-sm-8">
+                    <input class="form-control" th:field="${recipeDto.dishName}">
+                    <p th:if="${#fields.hasErrors('dishName')}" th:errorclass="text-danger"
+                       th:errors="${recipeDto.dishName}"></p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Категорія</label>
+                <div class="col-sm-8">
+                    <select class="form-select" th:field="${recipeDto.category}">
+                        <option value="Сніданки">Сніданки</option>
+                        <option value="Закуски та салати">Закуски та салати</option>
+                        <option value="Перші страви">Перші страви</option>
+                        <option value="Основні страви">Основні страви</option>
+                        <option value="Гарніри">Гарніри</option>
+                        <option value="Випічка та хліб">Випічка та хліб</option>
+                        <option value="Десерти та солодощі">Десерти та солодощі</option>
+                        <option value="Напої">Напої</option>
+                        <option value="Соуси та маринади">Соуси та маринади</option>
+                    </select>
+                    <p th:if="${#fields.hasErrors('category')}" th:errorclass="text-danger"
+                       th:errors="${recipeDto.category}"></p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Опис</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" th:field="${recipeDto.description}"></textarea>
+                    <p th:if="${#fields.hasErrors('description')}" th:errorclass="text-danger"
+                       th:errors="${recipeDto.description}"></p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Інгредієнти</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" th:field="${recipeDto.ingredients}" rows="4"></textarea>
+                    <p th:if="${#fields.hasErrors('ingredients')}" th:errorclass="text-danger"
+                       th:errors="${recipeDto.ingredients}"></p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Інструкція</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" th:field="${recipeDto.instruction}"rows="5"></textarea>
+                    <p th:if="${#fields.hasErrors('instruction')}" th:errorclass="text-danger"
+                       th:errors="${recipeDto.instruction}"></p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Калорійність</label>
+                <div class="col-sm-8">
+                    <input class="form-control" type="number" value="0.0" min="0" step="1" th:field="${recipeDto.calories}">
+                    <p th:if="${#fields.hasErrors('calories')}" th:errorclass="text-danger"
+                       th:errors="${recipeDto.calories}"></p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Зображення</label>
+                <div class="col-sm-8">
+                    <input class="form-control" type="file" th:field="${recipeDto.imageFile}">
+                    <p th:if="${#fields.hasErrors('imageFile')}" th:errorclass="text-danger"
+                       th:errors="${recipeDto.imageFile}"></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="offset-sm-4 col-sm-4 d-grid">
+                    <button type="submit" class="btn btn-primary">Зберегти</button>
+                </div>
+                <div class="col-sm-4 d-grid">
+                    <a class="btn btn-outline-primary" href="/recipes" role="button">Відмінити</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js" integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D" crossorigin="anonymous"></script>
+</body>
+</html>
