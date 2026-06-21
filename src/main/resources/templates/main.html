@@ -169,27 +169,36 @@
                         <a class="nav-link active" aria-current="page" href="/">Головна</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                             Категорії
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Сніданки</a></li>
-                            <li><a class="dropdown-item" href="#">Закуски та салати</a></li>
-                            <li><a class="dropdown-item" href="#">Перші страви</a></li>
-                            <li><a class="dropdown-item" href="#">Основні страви</a></li>
-                            <li><a class="dropdown-item" href="#">Гарніри</a></li>
-                            <li><a class="dropdown-item" href="#">Випічка та хліб</a></li>
-                            <li><a class="dropdown-item" href="#">Десерти та солодощі</a></li>
-                            <li><a class="dropdown-item" href="#">Напої</a></li>
-                            <li><a class="dropdown-item" href="#">Соуси та маринади</a></li>
+                            <li><a class="dropdown-item" th:href="@{/(category='Сніданки')}">Сніданки</a></li>
+                            <li><a class="dropdown-item" th:href="@{/(category='Закуски та салати')}">Закуски та салати</a></li>
+                            <li><a class="dropdown-item" th:href="@{/(category='Перші страви')}">Перші страви</a></li>
+                            <li><a class="dropdown-item" th:href="@{/(category='Основні страви')}">Основні страви</a></li>
+                            <li><a class="dropdown-item" th:href="@{/(category='Гарніри')}">Гарніри</a></li>
+                            <li><a class="dropdown-item" th:href="@{/(category='Випічка та хліб')}">Випічка та хліб</a></li>
+                            <li><a class="dropdown-item" th:href="@{/(category='Десерти та солодощі')}">Десерти та солодощі</a></li>
+                            <li><a class="dropdown-item" th:href="@{/(category='Напої')}">Напої</a></li>
+                            <li><a class="dropdown-item" th:href="@{/(category='Соуси та маринади')}">Соуси та маринади</a></li>
+
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Показати всі</a></li>
+
+                            <li><a class="dropdown-item" th:href="@{/}">Показати всі</a></li>
                         </ul>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Пошук" aria-label="Search"/>
-                    <button class="btn btn-outline-success" type="submit">Пошук</button>
+                <form class="d-flex" role="search" method="get" action="/">
+                    <input class="form-control me-2"
+                           type="search"
+                           name="search"
+                           placeholder="Пошук страви..."
+                           th:value="${search}" />
+
+                    <button class="btn btn-outline-success" type="submit">
+                        Пошук
+                    </button>
                     <button class="btn btn-outline-secondary" formaction="/login">Увійти</button>
                 </form>
             </div>
@@ -236,7 +245,7 @@
                 <div th:each="recipe : ${recipes}" class="col-md-4">
                     <div class="card mb-4 shadow-sm">
                         <img th:src="@{'/images' + ${recipe.imageFileName}}"
-                             alt="..." width="225" height="225" class="center"/>
+                             alt="..." style="width:auto; height:255px;" class="center"/>
                         <div class="card-body">
                             <p th:text="${recipe.getDishName()}" class="card-text">
                             </p>
@@ -254,7 +263,7 @@
                                     <a
                                             type="button"
                                             class="btn btn-sm btn-outline-success"
-                                            th:href="@{/recipes/addToFavorites(id=${recipe.id})}"
+                                            th:href="@{/}"
                                             id = "add"
                                     >
                                         В обрані

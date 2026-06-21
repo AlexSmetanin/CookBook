@@ -30,7 +30,9 @@ public class RecipesController {
     private RecipeRepository recipesRepository;
 
     @GetMapping({"/recipes"})
-    public String showRecipesList(Model model) {
+    public String showRecipesList(
+            @RequestParam(required = false) String category,
+            Model model) {
         List<Recipe> recipes = recipesRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
         model.addAttribute("recipes", recipes);
         return "recipes/recipes";
